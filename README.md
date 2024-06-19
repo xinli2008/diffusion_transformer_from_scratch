@@ -18,7 +18,10 @@ Diffusion Transformers trained on MNIST dataset
 
 ## Loss
 
+![loss](./assets/loss.png)
+
 ## Inference
+
 
 ## Todo
 
