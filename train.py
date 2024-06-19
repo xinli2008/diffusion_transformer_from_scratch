@@ -6,14 +6,14 @@ from torch.utils.tensorboard import SummaryWriter
 from config import *
 from dataset import train_dataset
 from diffusion import forward_diffusion
-from time_position_emb import TimePositionEmbedding
-from unet import UNet
+from time_position_embed import TimePositionEmbedding
+from dit import Dit
 
 # 创建数据加载器
 diffusion_dataloader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
 # 初始化模型
-model = UNet(1).to(device)
+model = Dit(image_size = 48, patch_size = 4, input_channel = 1, embedding_size = 128, dit_block_num = 4, num_heads = 4, label_num = 10, mlp_ratio = 4).to(device)
 
 # 定义优化器
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -89,7 +89,7 @@ if __name__ == "__main__":
         print(f"End training at epoch {epoch}, Average Loss = {avg_loss:.4f}")
 
         # 保存模型
-        if epoch % 50 == 0:
+        if epoch % 10 == 0:
             model_save_path = os.path.join('models', f"model_epoch_{epoch}.pt")
             torch.save(model.state_dict(), model_save_path)
             print(f"Model saved to {model_save_path}")

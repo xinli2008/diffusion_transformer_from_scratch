@@ -10,7 +10,7 @@ class TimePositionEmbedding(nn.Module):
         
         # 假如embedding_size =8, 则half_embedding_size = 4(//为向下取整)
         # 则half_embedding = [e**(0*(-1*log(10000)/3)), e**(1*(-1*log(10000)/3)), e**(2*(-1*log(10000)/3)), e**(3*(-1*log(10000)/3))] 
-        half_embedding = torch.exp(torch.arange(self.half_embedding_size) * (-1 * math.log(10000) / (self.half_embedding_size -1)))
+        half_embedding = torch.exp(torch.arange(self.half_embedding_size) * (-1 * math.log(10000) / (self.half_embedding_size -1))).to(device)
         
         # 在pytorch中, register_buffer和self.xxx = xxx 都是用来注册信息的。
         # 两者的差异在于:
