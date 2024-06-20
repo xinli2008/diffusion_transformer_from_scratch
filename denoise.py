@@ -67,7 +67,7 @@ def backward_denoise(model, batch_x_t, batch_cls):
 
 if __name__ == '__main__':
     # 加载状态字典
-    state_dict = torch.load("/mnt/diffusion_transformer/models/model_epoch_300.pt")
+    state_dict = torch.load("/mnt/diffusion_transformer/models/model_epoch_490.pt")
     model = model = Dit(image_size = 48, patch_size = 4, input_channel = 1, embedding_size = 128, dit_block_num = 4, num_heads = 4, label_num = 10, mlp_ratio = 4).to(device)
 
     # 加载状态字典到模型
