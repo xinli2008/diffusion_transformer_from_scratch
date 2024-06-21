@@ -16,6 +16,23 @@ Diffusion Transformers trained on MNIST dataset
 
 ![diffusion transformer architecture](./assets/dit_architecture.png)
 
+## key
+
+```python
+    def modulate(x, shift, scale):
+        r"""
+        Perform dit block shift and scale
+        Args:
+            x:      torch.tensor, [b, L, c]
+            shift:  torch.tensor, [b, c]
+            scale:  torch.tensor, [b, c]
+        Return:
+            torch.tensor, [b, L, c]
+        """
+        return x * (1 + scale.unsqueeze(1)) + shift.unsqueeze(1)
+
+```
+
 ## Loss
 
 ![loss](./assets/loss.png)
